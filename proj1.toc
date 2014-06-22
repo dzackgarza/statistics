@@ -1,0 +1,4 @@
+\select@language {english}
+\contentsline {section}{\numberline {I}Part 1}{1}{section.1}
+\contentsline {section}{\numberline {II}Measures of Center}{2}{section.2}
+\contentsline {section}{\numberline {III}Modified Box Plot}{2}{section.3}
