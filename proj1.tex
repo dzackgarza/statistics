@@ -80,9 +80,9 @@
 \section{Part 1}
 The data set used for this analysis is ``Data Set 8: Alcohol and Tobacco Use in Animated Children's Movies'' from Appendix B in \textit{Elementary Statistics} by Triola. The data analyzed were the movie lengths in seconds.
 
-Figure 1 shows the frequency distribution of the movie lengths.
+Figure 1 shows the frequency distribution of these movie lengths.
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \begin{centering}
 \includegraphics{proj1-fig1}
 \caption{Running Times of a Sample of G-Rated movies.}
@@ -110,7 +110,7 @@ Midrange:  92
 Range:  56
 \end{Soutput}
 \begin{Soutput}
-Sample Standard Deviation:  8.962507
+Sample Standard Deviation:  8.96
 \end{Soutput}
 \end{Schunk}
 
@@ -125,6 +125,8 @@ Sample Standard Deviation:  8.962507
 \noindent \hrulefill
 
 \section{Modified Box Plot}
+In order to make a modified box plot, we define the outliers in the sample set to be those data that are outside of the interquartile range (or IQR). The IQR is equal to $Q_3 - Q_1$, so we first need to evaluate the quantiles. These are given by:
+
 Quantiles:
 \begin{Schunk}
 \begin{Soutput}
@@ -133,13 +135,32 @@ Quantiles:
 \end{Soutput}
 \end{Schunk}
 
-\begin{figure}[h!]
+From this, we can identify the outliers as those that are above $Q_3$ or below $Q_1$ by $1.5\times$IQR and generate the boxplot accordingly.
+
+\begin{figure}[H]
 \begin{centering}
 \includegraphics{proj1-boxplot1}
-\caption{Modified Box Plot}
+\caption{Modified box plot, using the 1.5 IQR method to identify outliers. The "whiskers" outside of the central box indicate the highest and lowest usual values.}
 \label{fig:one}
 \end{centering}
 \end{figure}
+
+\section{Usual Values}
+The ``usual values'' all fall within $\pm$ 2 standard deviations of the mean -- that is, they are in the range of 79.2 $\pm$ 8.96.
+
+
+\begin{Schunk}
+\begin{Soutput}
+Mean:  79.2
+\end{Soutput}
+\begin{Soutput}
+Lowest Usual Value:  61.3
+\end{Soutput}
+\begin{Soutput}
+Highest Usual Value:  97.1
+\end{Soutput}
+\end{Schunk}
+\section{Summary of Findings}
 
 %\appendices{}
 %\bibliographystyle{plain}

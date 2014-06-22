@@ -81,7 +81,7 @@ The data set used for this analysis is ``Data Set 8: Alcohol and Tobacco Use in 
 
 Figure 1 shows the frequency distribution of these movie lengths.
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \begin{centering}
 <<label=fig1,fig=TRUE,echo=FALSE>>=
 w = read.table("CHMOVIE.csv", header = TRUE, sep=",")
@@ -107,7 +107,7 @@ cat("Mode: ", Mode(x))
 cat("Midrange: ",(max(x) + min(x))/2)
 
 cat("Range: ",max(x) - min(x))
-cat("Sample Standard Deviation: ", sd(x))
+cat("Sample Standard Deviation: ", signif(sd(x),3))
 @
 
 \noindent \hrulefill\\
@@ -118,20 +118,41 @@ summary(x)
 \noindent \hrulefill
 
 \section{Modified Box Plot}
+In order to make a modified box plot, we define the outliers in the sample set to be those data that are outside of the interquartile range (or IQR). The IQR is equal to $Q_3 - Q_1$, so we first need to evaluate the quantiles. These are given by:
+
 Quantiles:
 <<boxplotdata,echo = FALSE>>=
 quantile(x, c(0,0.25,0.50,0.75,1))
 @
 
-\begin{figure}[h!]
+From this, we can identify the outliers as those that are above $Q_3$ or below $Q_1$ by $1.5\times$IQR and generate the boxplot accordingly.
+
+\begin{figure}[H]
 \begin{centering}
 <<label=boxplot1,fig=TRUE,echo=FALSE>>=
-boxplot(x)
+boxplot(x, horizontal = TRUE, xlab="Running Time in Minutes", ylab="Sample Movie Data", ylim = c(0,120))
 @
-\caption{Modified Box Plot}
+\caption{Modified box plot, using the 1.5 IQR method to identify outliers. The "whiskers" outside of the central box indicate the highest and lowest usual values.}
 \label{fig:one}
 \end{centering}
 \end{figure}
+
+\section{Usual Values}
+<<calculations,echo = FALSE>>=
+mean1 = mean(x)
+sd1 = sd(x)
+low = mean1-2*sd1
+high = mean1+2*sd1
+@
+The ``usual values'' all fall within $\pm$ 2 standard deviations of the mean -- that is, they are in the range of \Sexpr{mean1} $\pm$ \Sexpr{signif(sd1,3)}.
+
+
+<<usual_values, echo = FALSE>>=
+cat("Mean: ", mean1)
+cat("Lowest Usual Value: ", signif(low,3))
+cat("Highest Usual Value: ", signif(high,3))
+@
+\section{Summary of Findings}
 
 %\appendices{}
 %\bibliographystyle{plain}
