@@ -84,11 +84,11 @@
 \section{Data}
 To analyze this hypothesis, we turn to the UCI Machine Learning Repository, which provides a data set of matching vehicles made between 1970 and 1982 and their efficiencies in MPG. The time period between 1978 and 1982 will be examined, as this time interval includes the 1979 Energy Crisis, during which the US price per barrel of crude oil spiked and purportedly led to increased fuel economy in the 1980s.
 
-The data set includes samples of individual car models from each year, so the first population will be a sample of cars automobiles made in 1978, and the second population will be those made in 1982. The 10 year average MPG between 1970 and 1980 will be used as a baseline -- anything above that average will be considered a "success", and anything below it will be considered a "failure". We will take the null hypothesis to be that the proportion of 1978 cars that were above the ten year average is equal to the the same proportion of 1982 cars. The alternative hypothesis is that they were not in fact equal, which is summarized as follows:
+The data set includes samples of individual car models from each year, so the first population will be a sample of cars automobiles made in 1978, and the second population will be those made in 1982. The 10 year average MPG between 1970 and 1980 will be used as a baseline -- anything above that average will be considered a "success", and anything below it will be considered a "failure". We will take the null hypothesis to be that the proportion of 1978 cars that were above the ten year average is equal to the the same proportion of 1982 cars. The alternative hypothesis is that they were not in fact equal, which is the primary claim we seek to, and is summarized as:
 
 \begin{align*}
-H_0 : p_1 = p_2 \\
-H_1 : p_1 \neq p_2
+&H_0 : p_1 = p_2 \\
+&H_1 : p_1 \neq p_2 \text{(Primary Claim)}
 \end{align*}
 
 where $p_1$ is the proportion of 1978 cars for which the MPG is above the 10 year average, and $p_2$ is the proportion of 1982 cars with MPGs above the 10 year average.
@@ -104,30 +104,101 @@ mu <- round(with(data, sum(V1)) / n, digits=3)
 \text{Ten Year Average: \Sexpr{mu}}
 \end{align*}
 
-The statistical characteristics of these populations are given below.
+Before performing the analysis, we check that the requirements for testing two sample proportions are met.
+\begin{enumerate}
+\item We first assume that the data collected constitute simple random samples.
 
-<<somestuff, echo=F>>=
+\item Since the two samples are disjoint and not related in any immediate way, we assume that the samples are independent.
+
+\item Both samples also exhibit 5 success and 5 failures, such that $n\hat{p} \geq 5$ and $n\hat{q} \geq 5$.
+\end{enumerate}
+
+Since the requirements are met, statistical characteristics of these samples are calculated and listed below.
+
+<<calculations, echo=F>>=
 sev <- data[data$V7 == 78,]
 eight <- data[data$V7 == 82,]
+
 n1 <- nrow(sev)
 n2 <- nrow(eight)
-mu1 <- round(with(sev, sum(V1)) / n1, digits=3)
-mu2 <- round(with(eight, sum(V1)) / n2, digits=3)
 
-p1 <- round(nrow(sev[sev$V1 >= mu,]) / n1, digits=3)
-p2 <- round(nrow(eight[eight$V1 >= mu,]) / n2, digits=3)
+mu1 <- round(mean(sev$V1), digits=3)
+mu2 <- round(mean(eight$V1), digits=3)
+
+x1 = nrow(sev[sev$V1 >= mu,]) 
+x2 = nrow(eight[eight$V1 >= mu,])
+
+ph1 <- round(x1 / n1, digits=3)
+ph2 <- round(x2 / n2, digits=3)
+
+qh1 <- 1-ph1
+qh2 <- 1-ph2
+
+s1 <- round(sd(sev$V1), digits=3)
+s2 <- round(sd(eight$V1), digits=3)
+
+barp <- round((x1 + x2) / (n1 + n2), digits=3)
+barq <- 1-barp
+
+E <- round(2.575*sqrt((ph1*qh1/n1)+(ph2*qh2/n2)), digits=3)
+
+z <- round((ph1-ph2)/sqrt((barp*barq/n1)+(barp*barq/n2)), digits=3)
+
+p <- round(pnorm(z), digits=9)
+p2 <- 2*p
 @
 
 \begin{table}[h]
 \centering
-		\begin{tabular}{@{}llll@{}}
+		\begin{tabular}{@{}lllll@{}}
 		\toprule
-		Population 	&Number of Samples ($n$)	 					&Average MPG ($\mu)	$ 			&Proportion Above 10-Year Average ($\overline{p}$) 	\\ \midrule
-		1 (1978)    &$n_1$ = \Sexpr{n1}    	&$\mu_1$ = \Sexpr{mu1} 	&$p_1$ = \Sexpr{p1}    																	\\
-		2 (1982)  	&$n_2$ = \Sexpr{n2}    	&$\mu_2$ = \Sexpr{mu2} 	&$p_2$ = \Sexpr{p2}  																		\\ \bottomrule
+		Population 	&Number of Samples ($n$)	 					&Average MPG ($\mu)	$ 		&Proportion Above 10-Year Average ($\hat{p}$) 	&Standard Deviation ($s$)			\\ \midrule
+		1 (1978)    &$n_1$ = \Sexpr{n1}    							&$\mu_1$ = \Sexpr{mu1} 		&$\hat{p}_1$ = \Sexpr{ph1}												& $s_1$ = \Sexpr{s1}    			\\
+		2 (1982)  	&$n_2$ = \Sexpr{n2}    							&$\mu_2$ = \Sexpr{mu2} 		&$\hat{p}_2$ = \Sexpr{ph2} 											& $s_2$ = \Sexpr{s2}  				\\ \bottomrule
 		\end{tabular}
 \end{table}
 
+The pooled sample proportion $\overline{p}$ is \Sexpr{barp}, which is given by the equation
+\begin{equation}
+		\overline{p} = \frac{x_1 + x_2}{n_1 + n_2}.
+\end{equation}
+
+The test statistic $z$ is \Sexpr{z}, which is given by the equation
+\begin{equation}
+		z = \frac{(\hat{p}_1 -\hat{p}_2)-(p_1 - p_2)}{\sqrt{\frac{\bar{p}\bar{q}}{n_1}+\frac{\bar{p}\bar{q}}{n_2}}},
+\end{equation}
+where $p_1-p_2$ is assumed to be zero, according to the null hypothesis. In other words, the null hypothesis assumes that the 1978 and 1982 populations are equal.
+
+Because the alternative hypothesis involves inequality, the $p$ value is obtained from a two-tailed test based on the $z$-score from above. We therefore look for the probability of getting a $z$-score at least as extreme as the test statistic. For this test, we use a significance level of $\alpha = .01$ , which corresponds to the critical values $z_{\alpha/2} = \pm 2.575$. Plotting the normal distribution shows where the test statistic lies in relation to the critical values: 
+
+\begin{figure}[H]
+		\begin{centering}
+		\begin{center}
+		\includegraphics[width=\linewidth]{./NormGraph.png}
+				\caption{Representation of critical values, the location of the test statistic, and the regions in which the null hypothesis would be rejected at a significance level of 0.99.}
+				\label{fig:NormalGraph}
+		\end{center}
+		\par\end{centering}
+\end{figure}
+
+By calculating the area under the normal distribution, we find that the cumulative area in the tail of the test statistic is \Sexpr{p}, and that the area in both tails is equal to \Sexpr{p2}.
+
+
+Thus, we have 
+\begin{align*}
+		p=\text{\Sexpr{p2}}, 
+\end{align*}
+and since $p$ is much lower than the significance level and the test statistic falls within a critical region,  we reject the null hypothesis and conclude that there is sufficient evidence to support the claim the the population proportions are equal.
+
+
+Based on these results, we find that the margin of error is \Sexpr{E}, and thus the confidence interval is 
+\begin{align*}
+\text{\Sexpr{ph1-ph2-E} < ($p_1-p_2$) < \Sexpr{ph1-ph2+E}}.
+\end{align*}
+Since the confidence interval does not include zero, we have further evidence that suggests $p_1$ and $p_2$ are not equal.
+
+\section{Conclusion}
+Because $H_0$ was rejected, we can conclude that there is sufficient evidence to suggest that there was a spike in the average fuel economy between 1978 and 1982 compared to the average fuel economy of cars made in the 1970s. It can not be definitively concluded that this was caused by the spike in oil prices that occurred in the late 1970s, statistical analysis suggests that cars made in the early 1980s are from a population with fuel efficiency that was much higher than the average at the time. 
 %\bibliographystyle{plain}
 %\bibliography{physbib}
 

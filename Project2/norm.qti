@@ -1,0 +1,405 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	2
+<table>
+Table1	30	2	7/19/14 8:49 PM
+geometry	0	0	445	220	
+header	1[X]	2[Y]
+ColWidth	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel		2
+<data>
+</data>
+</table>
+<multiLayer>
+Graph2	1	1	7/19/14 8:55 PM
+geometry	65	46	1132	469	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	5	5	1116	407
+<PageGeometry>0.0044405	0.0118483	0.991119	0.964455</PageGeometry>
+PlotTitle	Standard Normal Distribution<br>for a Two-Tailed Hypothesis Test<br>(Significance: 0.99)	#000000	4228
+<Antialiasing>1</Antialiasing>
+<Autoscaling>0</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	1	1	1	
+AxesTitles	Z Scores	Probability		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	5124	5124	5124
+AxesTitleDistance	2	2	2	2
+InvertedTitle	0	0	0	0
+TitleFont	Liberation Sans	10	75	0	0	0
+ScaleFont0	Liberation Sans	8	75	0	0	0
+ScaleFont1	Liberation Sans	8	75	0	0	0
+ScaleFont2	Liberation Sans	8	75	0	0	0
+ScaleFont3	Liberation Sans	8	75	0	0	0
+AxisFont0	Liberation Sans	8	50	0	0	0
+AxisFont1	Liberation Sans	8	50	0	0	0
+AxisFont2	Liberation Sans	8	50	0	0	0
+AxisFont3	Liberation Sans	8	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#000000	#000000	#000000	#000000
+AxesBaseline	0	0	0	0	
+CanvasFrame	1	#000000
+CanvasBackground	#ffffff	0
+<Function>
+<Type>0</Type>
+<Title>F3</Title>
+<Expression>1/sqrt(2*3.14159)*(2.71^((x^2)/(-2)))</Expression>
+<Variable>x</Variable>
+<Range>-10	10</Range>
+<Points>100</Points>
+<Style>0</Style>
+<LineStyle>1</LineStyle>
+<Pen>
+	<Color>#00ff00</Color>
+	<Style>0</Style>
+	<Width>1</Width>
+</Pen>
+<xAxis>2</xAxis>
+<yAxis>0</yAxis>
+<CurveType>0</CurveType>
+<Visible>1</Visible>
+</Function>
+<Function>
+<Type>1</Type>
+<Title>F1</Title>
+<Expression>-2.575	y</Expression>
+<Variable>y</Variable>
+<Range>0	1</Range>
+<Points>100</Points>
+<Style>0</Style>
+<LineStyle>1</LineStyle>
+<Pen>
+	<Color>#0000ff</Color>
+	<Style>0</Style>
+	<Width>1</Width>
+</Pen>
+<xAxis>2</xAxis>
+<yAxis>0</yAxis>
+<CurveType>0</CurveType>
+<Visible>1</Visible>
+</Function>
+<Function>
+<Type>1</Type>
+<Title>F4</Title>
+<Expression>2.575	y</Expression>
+<Variable>y</Variable>
+<Range>0	1</Range>
+<Points>100</Points>
+<Style>0</Style>
+<LineStyle>1</LineStyle>
+<Pen>
+	<Color>#0000ff</Color>
+	<Style>0</Style>
+	<Width>1</Width>
+</Pen>
+<xAxis>2</xAxis>
+<yAxis>0</yAxis>
+<CurveType>0</CurveType>
+<Visible>1</Visible>
+</Function>
+<Function>
+<Type>0</Type>
+<Title>F2</Title>
+<Expression>1/sqrt(2*3.14159)*(2.71^((x^2)/(-2)))</Expression>
+<Variable>x</Variable>
+<Range>-10	-2.575</Range>
+<Points>100</Points>
+<Style>0</Style>
+<LineStyle>1</LineStyle>
+<Pen>
+	<Color>#00ffff</Color>
+	<Style>0</Style>
+	<Width>1</Width>
+</Pen>
+<xAxis>2</xAxis>
+<yAxis>0</yAxis>
+<CurveType>0</CurveType>
+<Visible>1</Visible>
+</Function>
+<Function>
+<Type>0</Type>
+<Title>F5</Title>
+<Expression>1/sqrt(2*3.14159)*(2.71^((x^2)/(-2)))</Expression>
+<Variable>x</Variable>
+<Range>-10	-2.575</Range>
+<Points>100</Points>
+<Style>0</Style>
+<LineStyle>1</LineStyle>
+<Pen>
+	<Color>#ff00ff</Color>
+	<Style>0</Style>
+	<Width>1</Width>
+</Pen>
+<Brush>
+	<Color>#c0c0c0</Color>
+	<Style>8</Style>
+</Brush>
+<xAxis>2</xAxis>
+<yAxis>0</yAxis>
+<CurveType>0</CurveType>
+<Visible>1</Visible>
+</Function>
+<Function>
+<Type>0</Type>
+<Title>F6</Title>
+<Expression>1/sqrt(2*3.14159)*(2.71^((x^2)/(-2)))</Expression>
+<Variable>x</Variable>
+<Range>2.575	10</Range>
+<Points>100</Points>
+<Style>0</Style>
+<LineStyle>1</LineStyle>
+<Pen>
+	<Color>#ffff00</Color>
+	<Style>0</Style>
+	<Width>1</Width>
+</Pen>
+<xAxis>2</xAxis>
+<yAxis>0</yAxis>
+<CurveType>0</CurveType>
+<Visible>1</Visible>
+</Function>
+<Function>
+<Type>0</Type>
+<Title>F7</Title>
+<Expression>1/sqrt(2*3.14159)*(2.71^((x^2)/(-2)))</Expression>
+<Variable>x</Variable>
+<Range>2.575	10</Range>
+<Points>100</Points>
+<Style>0</Style>
+<LineStyle>1</LineStyle>
+<Pen>
+	<Color>#808000</Color>
+	<Style>0</Style>
+	<Width>1</Width>
+</Pen>
+<Brush>
+	<Color>#c0c0c0</Color>
+	<Style>7</Style>
+</Brush>
+<xAxis>2</xAxis>
+<yAxis>0</yAxis>
+<CurveType>0</CurveType>
+<Visible>1</Visible>
+</Function>
+<Function>
+<Type>1</Type>
+<Title>F8</Title>
+<Expression>-4.648	m</Expression>
+<Variable>m</Variable>
+<Range>0	1</Range>
+<Points>100</Points>
+<Style>0</Style>
+<LineStyle>1</LineStyle>
+<Pen>
+	<Color>#ff0000</Color>
+	<Style>0</Style>
+	<Width>1</Width>
+</Pen>
+<xAxis>2</xAxis>
+<yAxis>0</yAxis>
+<CurveType>0</CurveType>
+<Visible>1</Visible>
+</Function>
+<Function>
+<Type>1</Type>
+<Title>F9</Title>
+<Expression>-4.648	m</Expression>
+<Variable>m</Variable>
+<Range>0	1</Range>
+<Points>100</Points>
+<Style>0</Style>
+<LineStyle>1</LineStyle>
+<Pen>
+	<Color>#ff0000</Color>
+	<Style>0</Style>
+	<Width>1</Width>
+</Pen>
+<xAxis>2</xAxis>
+<yAxis>0</yAxis>
+<CurveType>0</CurveType>
+<Visible>1</Visible>
+</Function>
+scale	0	0	0.4	0	5	5	0	0
+scale	1	0	0.4	0	5	5	0	0
+scale	2	-7	7	0	8	5	0	0
+scale	3	-7	7	0	8	5	0	0
+LabelsFormat	0	6	0	6	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<line>	3.13447782546495	0.147079037800687	-2.59488692232055	0.00872727272727272	1	#000000	SolidLine	1	0	4	45	1	1</line>
+<line>	3.99570815450644	0.126460481099656	2.80137659783677	0.0116363636363636	1	#000000	SolidLine	1	0	4	45	1	1</line>
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>21.108179419525</x>
+<y>973.33333333333</y>
+<right>282.321899736148</right>
+<bottom>876.666666666667</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+\l(2)%(2)
+\l(3)%(3)
+\l(4)%(4)
+\l(5)%(5)
+\l(6)%(6)
+\l(7)%(7)
+\l(8)%(8)
+\l(9)%(9)
+</Text>
+<Font>Liberation Sans	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>3.1144492131617</x>
+<y>0.16494845360825</y>
+<right>5.57796852646638</right>
+<bottom>0.129209621993127</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+Rejection Regions
+</Text>
+<Font>Liberation Sans	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>0</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+<TexFormula>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>2.7460770328103</x>
+<y>0.36654545454545</y>
+<right>5.44222539229672</right>
+<bottom>0.308363636363636</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<tex>|z| \geq 2.575</tex>
+<xpm>
+/* XPM */
+static char *dummy[]={
+"124 29 16 1",
+"m c #000000",
+"i c #101010",
+"e c #222222",
+"d c #323232",
+"j c #444444",
+"k c #545454",
+"a c #666666",
+"b c #767676",
+"n c #888888",
+"g c #989898",
+"l c #aaaaaa",
+"f c #bababa",
+". c #cccccc",
+"h c #dcdcdc",
+"c c #eeeeee",
+"# c #ffffff",
+"..####################..####################################################################################################",
+"ab####################ab####################################################################################################",
+"ab####################ab############################################cadedb##############fdgh#c.bb####iddjjjjjjjk##fdgh#c.bb#",
+"ab####################ab###########################################hkh##.ei.############lmmmmmma####cmmmmmmmmmma##lmmmmmma##",
+"ab####################ab#############bin###########################kc#####iic###########laajja.#####fnc#######k###laajja.###",
+"ab####################ab##############ldmbc#######################fg######nmb###########lf##########nc#######gf###lf########",
+"ab####################ab################fdmah#####################ac######.me###########lf##########n#######ca####lf########",
+"ab####################ab##################.jmkh###################ji.######mi###########lf##################ac####lf########",
+"ab####################ab####################hkmj.#################jmg#####hmd###########lf#################ll#####lf########",
+"ab########nee.###a####ab######################hamdf###############cf######fmk###########lf.ggbkc###########k######lf.ggbkc##",
+"ab#######bmimih#nl####ab########################cbmel#####################km.###########lkf###.eh#########n.######lkf###.eh#",
+"ab######hdc#cgkdb#####ab###########################niel##################cmj############.f#####ke########ce#######.f#####ke#",
+"ab######hc####ha######ab###########################hkma##################kic###################fml#######ga##############fml",
+"ab###########.a#######ab#########################.jmkh##################lih####################hmk#######el##############hmk",
+"ab##########.b########ab#######################fdmah###################hi.######################md######hm.###############md",
+"ab#########.n#########ab#####################leibc####################ce.###############h#######mi######nm########h#######mi",
+"ab########fn##########ab###################gein#######################jf###############km.######me######jm#######km.######me",
+"ab#######ln#####fc####ab#################nieg########################al#####f##########jih#####cmk######ii#######jih#####cmk",
+"ab######ln######d#####ab##############cbmdl#########################ng######b##########nc######gm.######mi#######nc######gm.",
+"ab#####.eaaf##.el#####ab#############lmdf##########################lg#######a###cja####cb######ea######cme#######cb######ea#",
+"ab####cjc#gmmima######ab#############h.###########################.ijjjjjjjin###gmmh####lac##cjk#######.me########lac##cjk##",
+"ab####nc###giin#######ab##########################################dmmmmmmmmml###hed######hakkkg########cia#########hakkkg###",
+"ab####################ab####################################################################################################",
+"ab####################ab####################################################################################################",
+"ab####################ab#############c................c#####################################################################",
+"ab####################ab#############giiiiiiiiiiiiiiiik#####################################################################",
+"ab####################ab####################################################################################################",
+"ab####################ab####################################################################################################",
+"ng####################ng####################################################################################################"};
+</xpm>
+</TexFormula>
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>-6.5393419170243</x>
+<y>0.22836363636364</y>
+<right>-4.73676680972818</right>
+<bottom>0.190545454545455</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+Test Statistic
+</Text>
+<Font>Liberation Sans	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>0</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>
