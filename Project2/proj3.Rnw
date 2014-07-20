@@ -1,0 +1,134 @@
+\documentclass[twocolumn,english]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[unicode=true,
+ bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=1,
+ breaklinks=false,pdfborder={0 0 0},backref=false,colorlinks=false]
+ {hyperref}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{natbib}
+\usepackage{array}
+\usepackage{calc}
+\newcommand{\vb}[1]{\mathbf{#1}}		%Bold vector
+\newcolumntype{W}{>{\centering\arraybackslash}m{25mm}}
+\newcolumntype{L}{>{\centering\arraybackslash}m{15mm}}
+\usepackage{booktabs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Variables
+\newcommand{\thetitle}{Project 3: Population Proportions}
+\newcommand{\theauthors}{Zack Garza}
+\newcommand{\theclass}{Math 142: Elementary Statistics}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hypersetup{
+ pdftitle=  {\thetitle},
+ pdfauthor= {\theauthors},
+ pdfpagelayout=OneColumn, pdfnewwindow=true, pdfstartview=XYZ, plainpages=false}
+
+\makeatletter
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+ % protect \markboth against an old bug reintroduced in babel >= 3.8g
+ \let\oldforeign@language\foreign@language
+ \DeclareRobustCommand{\foreign@language}[1]{%
+   \lowercase{\oldforeign@language{#1}}}
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}
+\theoremstyle{plain}
+\newtheorem{lem}[thm]{\protect\lemmaname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+% for subfigures/subtables
+\ifCLASSOPTIONcompsoc
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\else
+\usepackage[caption=false,font=footnotesize]{subfig}
+\fi
+
+\makeatother
+\providecommand{\lemmaname}{Lemma}
+\providecommand{\theoremname}{Theorem}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+\usepackage{float}
+\onecolumn
+
+\begin{document}
+
+\title{\thetitle}
+\author{\theauthors}
+\IEEEspecialpapernotice
+{\theclass \\ Effective Date of Report: \today }
+\markboth{\thetitle}{\theauthors}
+\maketitle
+\tableofcontents
+
+\hrulefill
+
+\section{Introduction}
+\IEEEPARstart{T}he objective of this project is to test a claim about two independent population proportions. Due to the ever-increasing cost of fuel and the intricate link between fossil fuels and international conflicts, the overall fuel efficiency in miles-per-gallon (MPG) has become increasingly important to both consumers and manufacturers. The question addressed in this project is whether or not spikes in global oil prices drive innovation by increasing the average miles per gallon rating in newly manufactured cars.
+
+\newpage
+
+\section{Data}
+To analyze this hypothesis, we turn to the UCI Machine Learning Repository, which provides a data set of matching vehicles made between 1970 and 1982 and their efficiencies in MPG. The time period between 1978 and 1982 will be examined, as this time interval includes the 1979 Energy Crisis, during which the US price per barrel of crude oil spiked and purportedly led to increased fuel economy in the 1980s.
+
+The data set includes samples of individual car models from each year, so the first population will be a sample of cars automobiles made in 1978, and the second population will be those made in 1982. The 10 year average MPG between 1970 and 1980 will be used as a baseline -- anything above that average will be considered a "success", and anything below it will be considered a "failure". We will take the null hypothesis to be that the proportion of 1978 cars that were above the ten year average is equal to the the same proportion of 1982 cars. The alternative hypothesis is that they were not in fact equal, which is summarized as follows:
+
+\begin{align*}
+H_0 : p_1 = p_2 \\
+H_1 : p_1 \neq p_2
+\end{align*}
+
+where $p_1$ is the proportion of 1978 cars for which the MPG is above the 10 year average, and $p_2$ is the proportion of 1982 cars with MPGs above the 10 year average.
+
+First, the baseline must be computed, so the data set is read in, and the MPGs for all cars made between 1970 and 1980 are summed and divided by the number of cars sampled.
+
+<<baseline, echo=F>>=
+data <- read.table("mpg")
+n <- nrow(data)
+mu <- round(with(data, sum(V1)) / n, digits=3)
+@
+\begin{align*}
+\text{Ten Year Average: \Sexpr{mu}}
+\end{align*}
+
+The statistical characteristics of these populations are given below.
+
+<<somestuff, echo=F>>=
+sev <- data[data$V7 == 78,]
+eight <- data[data$V7 == 82,]
+n1 <- nrow(sev)
+n2 <- nrow(eight)
+mu1 <- round(with(sev, sum(V1)) / n1, digits=3)
+mu2 <- round(with(eight, sum(V1)) / n2, digits=3)
+
+p1 <- round(nrow(sev[sev$V1 >= mu,]) / n1, digits=3)
+p2 <- round(nrow(eight[eight$V1 >= mu,]) / n2, digits=3)
+@
+
+\begin{table}[h]
+\centering
+		\begin{tabular}{@{}llll@{}}
+		\toprule
+		Population 	&Number of Samples ($n$)	 					&Average MPG ($\mu)	$ 			&Proportion Above 10-Year Average ($\overline{p}$) 	\\ \midrule
+		1 (1978)    &$n_1$ = \Sexpr{n1}    	&$\mu_1$ = \Sexpr{mu1} 	&$p_1$ = \Sexpr{p1}    																	\\
+		2 (1982)  	&$n_2$ = \Sexpr{n2}    	&$\mu_2$ = \Sexpr{mu2} 	&$p_2$ = \Sexpr{p2}  																		\\ \bottomrule
+		\end{tabular}
+\end{table}
+
+%\bibliographystyle{plain}
+%\bibliography{physbib}
+
+\end{document}
