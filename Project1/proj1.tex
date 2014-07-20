@@ -1,0 +1,166 @@
+\documentclass[twocolumn,english]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[unicode=true,
+ bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=1,
+ breaklinks=false,pdfborder={0 0 0},backref=false,colorlinks=false]
+ {hyperref}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{natbib}
+\usepackage{array}
+\usepackage{calc}
+\newcommand{\vb}[1]{\mathbf{#1}}		%Bold vector
+\newcolumntype{W}{>{\centering\arraybackslash}m{25mm}}
+\newcolumntype{L}{>{\centering\arraybackslash}m{15mm}}
+\usepackage{booktabs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Variables
+\newcommand{\thetitle}{Project 3: Population Proportions}
+\newcommand{\theauthors}{Zack Garza}
+\newcommand{\theclass}{Math 142: Elementary Statistics}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hypersetup{
+ pdftitle=  {\thetitle},
+ pdfauthor= {\theauthors},
+ pdfpagelayout=OneColumn, pdfnewwindow=true, pdfstartview=XYZ, plainpages=false}
+
+\makeatletter
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+ % protect \markboth against an old bug reintroduced in babel >= 3.8g
+ \let\oldforeign@language\foreign@language
+ \DeclareRobustCommand{\foreign@language}[1]{%
+   \lowercase{\oldforeign@language{#1}}}
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}
+\theoremstyle{plain}
+\newtheorem{lem}[thm]{\protect\lemmaname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+% for subfigures/subtables
+\ifCLASSOPTIONcompsoc
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\else
+\usepackage[caption=false,font=footnotesize]{subfig}
+\fi
+
+\makeatother
+\providecommand{\lemmaname}{Lemma}
+\providecommand{\theoremname}{Theorem}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+\usepackage{float}
+\onecolumn
+
+\usepackage{Sweave}
+\begin{document}
+
+\title{\thetitle}
+\author{\theauthors}
+\IEEEspecialpapernotice
+{\theclass \\ Effective Date of Report: \today }
+\markboth{\thetitle}{\theauthors}
+\maketitle
+\tableofcontents
+
+\hrulefill
+
+\section{Part 1}
+
+
+\newpage
+
+\section{Measures of Center}
+\begin{Schunk}
+\begin{Soutput}
+Mean:  79.2
+\end{Soutput}
+\begin{Soutput}
+Median:  77.5
+\end{Soutput}
+\begin{Soutput}
+Mode:  75
+\end{Soutput}
+\begin{Soutput}
+Midrange:  92
+\end{Soutput}
+\begin{Soutput}
+Range:  56
+\end{Soutput}
+\begin{Soutput}
+Sample Standard Deviation:  8.96
+\end{Soutput}
+\end{Schunk}
+
+\noindent \hrulefill\\
+\noindent \textbf{5 Number Summary:}
+\begin{Schunk}
+\begin{Soutput}
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+  64.00   74.00   77.50   79.20   82.75  120.00
+\end{Soutput}
+\end{Schunk}
+\noindent \hrulefill
+
+\section{Modified Box Plot}
+In order to make a modified box plot, we define the outliers in the sample set to be those data that are outside of the interquartile range (or IQR). The IQR is equal to $Q_3 - Q_1$, so we first need to evaluate the quantiles. These are given by:
+
+Quantiles:
+\begin{Schunk}
+\begin{Soutput}
+    0%    25%    50%    75%   100%
+ 64.00  74.00  77.50  82.75 120.00
+\end{Soutput}
+\end{Schunk}
+
+From this, we can identify the outliers as those that are above $Q_3$ or below $Q_1$ by $1.5\times$IQR and generate the boxplot accordingly.
+
+\begin{figure}[H]
+\begin{centering}
+\includegraphics{proj1-boxplot1}
+\caption{Modified box plot, using the 1.5 IQR method to identify outliers. The "whiskers" outside of the central box indicate the highest and lowest usual values.}
+\label{fig:one}
+\end{centering}
+\end{figure}
+
+\section{Usual Values}
+The ``usual values'' all fall within $\pm$ 2 standard deviations of the mean -- that is, they are in the range of 79.2 $\pm$ 8.96.
+
+
+\begin{Schunk}
+\begin{Soutput}
+Mean:  79.2
+\end{Soutput}
+\begin{Soutput}
+Lowest Usual Value:  61.3
+\end{Soutput}
+\begin{Soutput}
+Highest Usual Value:  97.1
+\end{Soutput}
+\end{Schunk}
+\section{Summary of Findings}
+
+From the histogram data, it was found that the majority of the G-rated movies in the sample were between 70 and 80 minutes long. Barring the outlier "Fantasia", the distribution is approximately normal by a loose definition. The mean and median also fall into this range - however, due to the outlier, the median may be a better indicator of the center in this case, and the most common movie length was 75 minutes.
+
+From this, we can deduce from the empirical rule that about 68\% of these movies were within 70.2 and 88.2 minutes long. We also see that the usual movie lengths were between 61.3 and 97.1 minutes long, and that 95\% of the movies fell within this range.
+
+Comparing this to the lengths of R-rated movies, which are estimated to be about two hours or 120 minutes on average, the results of this analysis suggest that G-rated movies tend to be relatively short.
+
+
+%\appendices{}
+%\bibliographystyle{plain}
+%\bibliography{physbib}
+
+\end{document}
