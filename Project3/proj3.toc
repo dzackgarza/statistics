@@ -1,0 +1,8 @@
+\select@language {english}
+\contentsline {section}{\numberline {I}Theme}{1}{section.1}
+\contentsline {section}{\numberline {II}Description}{2}{section.2}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}Population and Sample}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Sampling Technique}{2}{subsection.2.2}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-C}}Survey Questions}{2}{subsection.2.3}
+\contentsline {section}{\numberline {III}Data and Analysis}{2}{section.3}
+\contentsline {section}{\numberline {IV}Conclusion}{2}{section.4}
