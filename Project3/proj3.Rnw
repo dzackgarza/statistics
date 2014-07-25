@@ -114,15 +114,16 @@ elig2 <- lunch.sample2$October.2012.Percent.....Eligible.FRPM...K.12.
 
 ### Read in Star Scores and remove schools with less than 10 scores recorded (for privacy).
 test.data <- read.csv("~/ca2012_1_csv_v3.txt", na.strings=c("*", "NA"))
-test.data <- na.omit(test.data)
+test.data <- test.data[!(is.na(test.data$Mean.Scale.Score)),]
+
 
 # Take two samples
 star.sample1 <- subset(test.data, School.Code %in% codes.sample1)
 star.sample2 <- subset(test.data, School.Code %in% codes.sample1)
 
 # Write shortcuts
-mean1 <- star.sample1$Mean.Scale.Score
-mean2 <- star.sample2$Mean.Scale.Score
+scores1 <- star.sample1$Mean.Scale.Score
+scores2 <- star.sample2$Mean.Scale.Score
 
 @
 
@@ -207,6 +208,17 @@ hist(elig2, main="Proportion of Students Eligible for FRPM, Sample 2", xlab="Pro
 \end{centering}
 \end{figure}
 
+
+
+\begin{figure}[H]
+\begin{centering}
+<< label=fig_scores1, fig=TRUE, echo=F >>=
+hist(scores1)
+@
+\caption{Proportions.}
+\label{fig:Scores_Hist_One}
+\end{centering}
+\end{figure}
 
 % One Pie chart or pareto chart
 % One frequency distribution: Frequency, Percentage Frequency, Cumulative Frequency. 5-8 Classes
