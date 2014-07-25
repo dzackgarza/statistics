@@ -81,9 +81,16 @@
 \section{Theme}
 \IEEEPARstart{T}he 
 
+
+
 \newpage
 
+
+
+
 \section{Description}
+Lunch: K-12 Students Eligible for Free and Reduced Priced Meals (FRPM), reported by schools in 2012.
+STAR Scores: The Mean Scale Score across all STAR subject tests given to K-12 students.
 \subsection{Population and Sample}
 \subsection{Sampling Technique}
 
@@ -94,25 +101,58 @@ The average number of schools per county was around 150, meaning that there was 
 Thus, this method provided a very high probability of fulfilling the requirement of $n \geq 30$ required for many of the following statistical analyses.
 
 To select two independent populations, two counties were selected at random.
-\begin{Schunk}
-\begin{Sinput}
-> populations <- sample(1:58, 2)
-> populations  # Print randomly selected county codes
-\end{Sinput}
-\begin{Soutput}
-[1] 31  9
-\end{Soutput}
-\end{Schunk}
 
 From the two chosen counties, simple random samples of 50 schools were taken without replacement from all of the districts and schools within that county.
 
-From this data, a list of unique school codes were generated. This allowed cross-referencing the primary data sets.
-The quantitative analysis resulted 
+From this data, a list of unique school codes were generated. 
+This allowed cross-referencing the primary data sets.
+
+
+
+
 
 
 \subsection{Survey Questions}
 
+The schools codes were matched up with the STAR scores in the first data set, and the reduced/free lunch statistics in the second data set. 
+This essentially amounted to "querying" the two samples in the following ways:
+
+\begin{itemize}
+		\item \textbf{Quantitative}:
+
+				What was the average STAR score among K-12 students at this school?
+
+				What proportion of this school's student population qualifies for free or reduced lunch?
+		\item \textbf{Qualitative}:
+
+				What were the students' parental education levels at this school?
+\end{itemize}
+
+
+
+
+
+
 \section{Data and Analysis}
+
+\begin{figure}[H]
+\begin{centering}
+\includegraphics{proj3-fig_lunch_props2}
+\caption{Proportions.}
+\label{fig:Lunch_Hist_Two}
+\end{centering}
+\end{figure}
+
+
+
+\begin{figure}[H]
+\begin{centering}
+\includegraphics{proj3-fig_lunch_props1}
+\caption{Proportions.}
+\label{fig:Lunch_Hist_One}
+\end{centering}
+\end{figure}
+
 
 % One Pie chart or pareto chart
 % One frequency distribution: Frequency, Percentage Frequency, Cumulative Frequency. 5-8 Classes

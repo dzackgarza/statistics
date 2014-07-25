@@ -75,11 +75,55 @@
 \tableofcontents
 
 <<setup, echo=F>>=
+# Seed for reproducible results
 set.seed(90912)
+
+# Randomly select two county codes
+populations <- sample(1:58, 2)
+
+# Read/clean school lookup table
 schools <- read.csv("~/ca2012entities_csv.txt")
 schools.clean <- schools[ schools$School.Code != 0, ]
 schools.clean <- schools.clean[ schools.clean$County.Code >= 1, ]
 schools.clean <- schools.clean[ schools.clean$County.Code <= 58, ]
+
+# Keep only the data from the two sampled counties
+star.scores1 <- schools.clean[ schools.clean$County.Code == populations[1], ]
+star.scores2 <- schools.clean[ schools.clean$County.Code == populations[2], ]
+
+# Take a simple random sample of 30 schools in each county
+codes.sample1 <- sample(star.scores1$School.Code, 60)
+codes.sample2 <- sample(star.scores2$School.Code, 60)
+
+
+### Read in free lunch counts, remove rows with missing data
+lunch <- read.csv("~/lunch.csv", na.strings="NULL")
+
+# Convert percentages to ratios, and store them back in the table columns
+lunch$October.2012.Percent.....Eligible.FRPM...K.12. <- as.numeric(gsub("%", "",lunch$October.2012.Percent.....Eligible.FRPM...K.12.))/100
+
+# Take the two samples
+lunch.sample1 <- subset(lunch, School.Code %in% codes.sample1)
+lunch.sample2 <- subset(lunch, School.Code %in% codes.sample2)
+
+# Write a few shortcuts for the data
+elig1 <- lunch.sample1$October.2012.Percent.....Eligible.FRPM...K.12.
+elig2 <- lunch.sample2$October.2012.Percent.....Eligible.FRPM...K.12.
+
+
+
+### Read in Star Scores and remove schools with less than 10 scores recorded (for privacy).
+test.data <- read.csv("~/ca2012_1_csv_v3.txt", na.strings=c("*", "NA"))
+test.data <- na.omit(test.data)
+
+# Take two samples
+star.sample1 <- subset(test.data, School.Code %in% codes.sample1)
+star.sample2 <- subset(test.data, School.Code %in% codes.sample1)
+
+# Write shortcuts
+mean1 <- star.sample1$Mean.Scale.Score
+mean2 <- star.sample2$Mean.Scale.Score
+
 @
 
 \hrulefill
@@ -87,9 +131,16 @@ schools.clean <- schools.clean[ schools.clean$County.Code <= 58, ]
 \section{Theme}
 \IEEEPARstart{T}he 
 
+
+
 \newpage
 
+
+
+
 \section{Description}
+Lunch: K-12 Students Eligible for Free and Reduced Priced Meals (FRPM), reported by schools in 2012.
+STAR Scores: The Mean Scale Score across all STAR subject tests given to K-12 students.
 \subsection{Population and Sample}
 \subsection{Sampling Technique}
 
@@ -100,29 +151,62 @@ The average number of schools per county was around 150, meaning that there was 
 Thus, this method provided a very high probability of fulfilling the requirement of $n \geq 30$ required for many of the following statistical analyses.
 
 To select two independent populations, two counties were selected at random.
-<<population, echo=T>>=
-populations <- sample(1:58, 2)
-populations  # Print randomly selected county codes
-@
 
 From the two chosen counties, simple random samples of 50 schools were taken without replacement from all of the districts and schools within that county.
-<<selection, echo=F>>=
-# Pick out all rows matching specific counties.
-dist31 <- schools.clean[ schools.clean$County.Code==31, ]
-dist9 <- schools.clean[ schools.clean$County.Code==9, ]
 
-# Take a simple random sample of 50 schools from each county.
-dist9.50schools <- dist9[ sample(nrow(dist9),50), ]
-dist31.50schools <- dist31[ sample(nrow(dist9),50), ]
-@
+From this data, a list of unique school codes were generated. 
+This allowed cross-referencing the primary data sets.
 
-From this data, a list of unique school codes were generated. This allowed cross-referencing the primary data sets.
-The quantitative analysis resulted 
+
+
+
 
 
 \subsection{Survey Questions}
 
+The schools codes were matched up with the STAR scores in the first data set, and the reduced/free lunch statistics in the second data set. 
+This essentially amounted to "querying" the two samples in the following ways:
+
+\begin{itemize}
+		\item \textbf{Quantitative}:
+
+				What was the average STAR score among K-12 students at this school?
+
+				What proportion of this school's student population qualifies for free or reduced lunch?
+		\item \textbf{Qualitative}:
+
+				What were the students' parental education levels at this school?
+\end{itemize}
+
+
+
+
+
+
 \section{Data and Analysis}
+
+\begin{figure}[H]
+\begin{centering}
+<< label=fig_lunch_props2, fig=TRUE, echo=F >>=
+hist(elig1, main="Proportion of Students Eligible for FRPM, Sample 1", xlab="Proportion", ylab="Number of Schools")
+@
+\caption{Proportions.}
+\label{fig:Lunch_Hist_Two}
+\end{centering}
+\end{figure}
+
+
+
+\begin{figure}[H]
+\begin{centering}
+<< label=fig_lunch_props1, fig=TRUE, echo=F >>=
+hist(elig2, main="Proportion of Students Eligible for FRPM, Sample 2", xlab="Proportion", ylab="Number of Schools")
+@
+\caption{Proportions.}
+\label{fig:Lunch_Hist_One}
+\end{centering}
+\end{figure}
+
 
 % One Pie chart or pareto chart
 % One frequency distribution: Frequency, Percentage Frequency, Cumulative Frequency. 5-8 Classes
