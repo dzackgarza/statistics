@@ -5,4 +5,10 @@
 \contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Sampling Technique}{2}{subsection.2.2}
 \contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-C}}Survey Questions}{2}{subsection.2.3}
 \contentsline {section}{\numberline {III}Data and Analysis}{3}{section.3}
-\contentsline {section}{\numberline {IV}Conclusion}{5}{section.4}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Free and Reduced Price Lunch}{3}{subsection.3.1}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}State of California K-12 STAR Test Results}{6}{subsection.3.2}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}Summary Statistics}{8}{subsection.3.3}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-D}}Summary Statistics}{9}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-D}1}Confidence Intervals}{9}{subsubsection.3.4.1}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-E}}Hypothesis Test}{10}{subsection.3.5}
+\contentsline {section}{\numberline {IV}Conclusion}{10}{section.4}
